@@ -14,7 +14,7 @@ function App() {
   const fetchData = async () => {
     try {
       // Fetch data from the server
-      const response = await fetch("https://benab04.pythonanywhere.com/");
+      const response = await fetch("http://127.0.0.1:8000/");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
