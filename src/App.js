@@ -14,12 +14,12 @@ function App() {
   const fetchData = async () => {
     try {
       // Fetch data from the server
-      const response = await fetch("http://your-server-url/api/data");
+      const response = await fetch("http://127.0.0.1:8000/");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const jsonData = await response.json();
-      setData(jsonData);
+      setData(JSON.stringify(jsonData));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -27,11 +27,10 @@ function App() {
 
   return (
     <div className="App">
-      {data ? <div>{Object.keys(data)}</div> : <div>Loading...</div>}
-      <button
-        onClick={fetchData}
-        style={{ height: "20px", width: "40px" }}
-      ></button>
+      {data ? <div>{data}</div> : <div>Loading...</div>}
+      <button onClick={fetchData} style={{ height: "20px", width: "40px" }}>
+        GET
+      </button>
     </div>
   );
 }
