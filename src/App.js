@@ -1,36 +1,30 @@
-import logo from "./logo.svg";
 import "./App.css";
-
-import React, { useState, useEffect } from "react";
+import Navbar from "./components/Navbar/Navbar";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import { AuthContextProvider } from "./context/AuthContext";
+import Account from "./pages/Account";
+import Protected from "./components/Protected";
 
 function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    // Fetch data when the component mounts
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      // Fetch data from the server
-      const response = await fetch("http://127.0.0.1:8000/");
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const jsonData = await response.json();
-      setData(JSON.stringify(jsonData));
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
   return (
-    <div className="App">
-      {data ? <div>{data}</div> : <div>Loading...</div>}
-      <button onClick={fetchData} style={{ height: "20px", width: "40px" }}>
-        GET
-      </button>
+    <div>
+      <AuthContextProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signin" element={<LoginPage />} />
+          <Route
+            path="/account"
+            element={
+              <Protected>
+                <Account />
+              </Protected>
+            }
+          />
+        </Routes>
+      </AuthContextProvider>
     </div>
   );
 }
