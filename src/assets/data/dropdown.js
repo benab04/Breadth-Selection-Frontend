@@ -9,7 +9,6 @@ export const options = [
   "Differential Equations",
   "Differential Geometry",
   "Element Methods",
-  "Game Theory",
   "Graph Theory",
   "Groups",
   "Logic",
