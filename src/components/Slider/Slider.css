@@ -19,3 +19,8 @@
     width:20px;
     border:none
 }
+
+.details-btn{
+    padding:3px 10px;
+    border-radius: 20px;
+}

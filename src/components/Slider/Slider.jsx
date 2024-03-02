@@ -69,6 +69,22 @@ const SliderComponent = () => {
     e.preventDefault();
     addPreference(typedPreference);
   };
+  function handleDetails(e) {
+    const formData = new FormData();
+    formData.append("Course", e);
+    fetch("http://127.0.0.1:8000/analytics/", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData);
+        // setResponse(responseData);
+      })
+      .catch((error) => {
+        console.error("Error submitting data:", error);
+      });
+  }
 
   const renderSliders = () => {
     const sliders = selectedPreferences.map((pref, index) => (
@@ -227,6 +243,7 @@ const SliderComponent = () => {
                       <th>Course</th>
                       <th>Final Score</th>
                       <th>Search Score</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -235,6 +252,16 @@ const SliderComponent = () => {
                         <td>{course.course}</td>
                         <td>{course.final_score}</td>
                         <td>{course.search_score}</td>
+                        <td>
+                          <button
+                            className="details-btn"
+                            onClick={() => {
+                              handleDetails(course.course);
+                            }}
+                          >
+                            Details
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
