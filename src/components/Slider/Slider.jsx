@@ -86,11 +86,11 @@ const SliderComponent = () => {
       .then((responseData) => {
         console.log(responseData);
         setDetails(responseData);
+        setShowModal(true); // Open modal after details_response has been updated
       })
       .catch((error) => {
         console.error("Error submitting data:", error);
       });
-    setShowModal(true);
   }
 
   const handleCloseModal = () => {
@@ -271,13 +271,6 @@ const SliderComponent = () => {
                           >
                             Details
                           </button>
-                          {showModal && (
-                            <LineGraphModal
-                              showModal={showModal}
-                              data={details_response}
-                              onClose={handleCloseModal}
-                            />
-                          )}
                         </td>
                       </tr>
                     ))}
@@ -287,6 +280,13 @@ const SliderComponent = () => {
             </div>
           </div>
         </div>
+      )}
+      {showModal && details_response && (
+        <LineGraphModal
+          showModal={showModal}
+          data={details_response}
+          onClose={handleCloseModal}
+        />
       )}
     </div>
   );
