@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import "./Slider.css";
 import { options } from "../../assets/data/dropdown";
+import LineGraphModal from "../LineGraph/Linegraph";
 const SliderComponent = () => {
   const [selectedPreferences, setSelectedPreferences] = useState([]);
   const [preferenceValues, setPreferenceValues] = useState({});
   const [usePreferences, setUsePreferences] = useState(false);
   const [response, setResponse] = useState(null);
+  const [details_response, setDetails] = useState(null);
   const [typedPreference, setTypedPreference] = useState("");
   const [limit, setLimit] = useState(10);
+  const [showModal, setShowModal] = useState(false);
 
   const handlePreferenceChange = (e) => {
     const selectedPref = e.target.value;
@@ -79,11 +82,12 @@ const SliderComponent = () => {
       .then((response) => response.json())
       .then((responseData) => {
         console.log(responseData);
-        // setResponse(responseData);
+        setDetails(responseData);
       })
       .catch((error) => {
         console.error("Error submitting data:", error);
       });
+    setShowModal(true);
   }
 
   const renderSliders = () => {
@@ -261,6 +265,9 @@ const SliderComponent = () => {
                           >
                             Details
                           </button>
+                          {showModal && (
+                            <LineGraphModal data={details_response} />
+                          )}
                         </td>
                       </tr>
                     ))}
