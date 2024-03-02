@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import "./Slider.css";
 import { options } from "../../assets/data/dropdown";
 import LineGraphModal from "../LineGraph/Linegraph";
+import { Button } from "react-bootstrap";
+
 const SliderComponent = () => {
+  const base_url = process.env.REACT_APP_BASE_URL;
   const [selectedPreferences, setSelectedPreferences] = useState([]);
   const [preferenceValues, setPreferenceValues] = useState({});
   const [usePreferences, setUsePreferences] = useState(false);
@@ -43,7 +46,7 @@ const SliderComponent = () => {
       );
     });
 
-    fetch("http://127.0.0.1:8000/preferences/", {
+    fetch(base_url + "preferences/", {
       method: "POST",
       body: formData,
     })
@@ -75,7 +78,7 @@ const SliderComponent = () => {
   function handleDetails(e) {
     const formData = new FormData();
     formData.append("Course", e);
-    fetch("http://127.0.0.1:8000/analytics/", {
+    fetch(base_url + "analytics/", {
       method: "POST",
       body: formData,
     })
@@ -90,6 +93,9 @@ const SliderComponent = () => {
     setShowModal(true);
   }
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   const renderSliders = () => {
     const sliders = selectedPreferences.map((pref, index) => (
       <div className="col-12 col-sm-6 col-md-4 mb-3" key={pref}>
@@ -266,7 +272,11 @@ const SliderComponent = () => {
                             Details
                           </button>
                           {showModal && (
-                            <LineGraphModal data={details_response} />
+                            <LineGraphModal
+                              showModal={showModal}
+                              data={details_response}
+                              onClose={handleCloseModal}
+                            />
                           )}
                         </td>
                       </tr>

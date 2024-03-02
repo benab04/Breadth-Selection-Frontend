@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { Modal } from "bootstrap";
+import React, { useEffect, useRef } from "react";
+import { Modal } from "react-bootstrap";
 import * as d3 from "d3";
 
-const LineGraphModal = ({ data, showModal, setShowModal }) => {
-  const [modal, setModal] = useState(null);
-
+function LineGraph({ showModal, data, onClose }) {
+  const modalRef = useRef(null);
+  data = [
+    {
+      EX: 3,
+      A: 11,
+      B: 2,
+      C: 7,
+      D: 3,
+      P: 1,
+      F: 0,
+      session: "Autumn 22",
+    },
+  ];
   useEffect(() => {
-    const modalNode = document.getElementById("lineGraphModal");
-    setModal(new Modal(modalNode));
-  }, []);
-
-  useEffect(() => {
-    if (modal) {
-      if (showModal) {
-        modal.show();
-        drawLineGraph();
-      } else {
-        modal.hide();
-      }
+    if (showModal) {
+      drawGraph();
     }
-  }, [modal, showModal]);
+  }, [showModal]);
 
-  const drawLineGraph = () => {
+  const drawGraph = () => {
     const svgWidth = 400;
     const svgHeight = 200;
 
@@ -68,34 +69,16 @@ const LineGraphModal = ({ data, showModal, setShowModal }) => {
   };
 
   return (
-    <div
-      className="modal fade"
-      id="lineGraphModal"
-      tabIndex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog modal-lg">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
-              Line Graph
-            </h5>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={() => setShowModal(false)}
-            ></button>
-          </div>
-          <div className="modal-body">
-            <svg id="lineGraph"></svg>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Modal show={showModal} onHide={onClose} ref={modalRef}>
+      <Modal.Header closeButton>
+        <Modal.Title>Graph</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {/* You can place SVG or any content here for the graph */}
+        <svg ref={modalRef}></svg>
+      </Modal.Body>
+    </Modal>
   );
-};
+}
 
-export default LineGraphModal;
+export default LineGraph;

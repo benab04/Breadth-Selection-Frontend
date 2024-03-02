@@ -10,7 +10,6 @@ export const options = [
   "Differential Geometry",
   "Element Methods",
   "Graph Theory",
-  "Groups",
   "Logic",
   "Mathematical Finance",
   "Mathematical Modeling",
