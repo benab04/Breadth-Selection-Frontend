@@ -3,30 +3,57 @@
     height: 100vh;
     min-height:30rem;
     max-height:40rem;
-    /* background-image: url('../../assets/images/take3.png');  */
+    background-image: url('../../assets/images/image0_0.jpg'); 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
-    text-align: center;
+    text-align: left;
     padding-top: 30px;
+    justify-content: space-evenly;
     position: relative;
 }
 
-
-
-
-
-.welcome{
+.hero {
+    position: relative;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  }
+  
+  .welcome {
+    position: relative;
+    z-index: 1; /* Ensure h1 is above the overlay */
     font-family: 'Poppins', sans-serif;
-    color:#000;
-    font-weight:900;
-    max-width:800px;
-    font-size:4rem;
-    margin:40px 40px 30px 40px;
+    color: #fff;
+    font-weight: 900;
+    max-width: 800px;
+    font-size: 4rem;
+    text-align: left;
+    margin: 40px 40px 30px 40px;
+  }
+  
+
+
+.welcome {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-weight: 900;
+    max-width: 800px;
+    font-size: 4rem;
+    text-align: left;
+    margin: 40px 40px 30px 40px;
+    text-shadow: 10px 5px 4px rgba(0, 0, 0, 0.5);
 }
+
 .tagline{
     font-family: 'Poppins', sans-serif;
     width:fit-content;
@@ -57,13 +84,6 @@
 
 
 
-  .welcome {
-    text-align: center;
-    color: #000;
-    background-clip: text;
-    -webkit-background-clip: text;
-  }
-  
   
 
   @media  screen and (max-width:800px) {

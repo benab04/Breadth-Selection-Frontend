@@ -14,8 +14,6 @@ export const options = [
   "Logic",
   "Mathematical Finance",
   "Mathematical Modeling",
-  "Mathematical Optimization",
-  "Mathematical Physics",
   "Mathematics",
   "Methods",
   "Modeling",

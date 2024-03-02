@@ -7,6 +7,7 @@ const SliderComponent = () => {
   const [usePreferences, setUsePreferences] = useState(false);
   const [response, setResponse] = useState(null);
   const [typedPreference, setTypedPreference] = useState("");
+  const [limit, setLimit] = useState(10);
 
   const handlePreferenceChange = (e) => {
     const selectedPref = e.target.value;
@@ -144,7 +145,7 @@ const SliderComponent = () => {
 
       {selectedPreferences.length > 0 && (
         <div className="mb-3">
-          <p>Selected Preferences:</p>
+          <p>Selected Subject Preferences:</p>
           <div className="d-flex ">
             {selectedPreferences.map((pref) => (
               <div className="preference-box" key={pref}>
@@ -191,31 +192,56 @@ const SliderComponent = () => {
 
       {response && (
         <div className="mt-3">
-          <p>Response from server:</p>
-          <pre>
-            {" "}
-            <div className="container">
-              <h2>Course Details</h2>
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Course</th>
-                    <th>Final Score</th>
-                    <th>Search Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {response.map((course, index) => (
-                    <tr key={index}>
-                      <td>{course.course}</td>
-                      <td>{course.final_score}</td>
-                      <td>{course.search_score}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <p>Response from server:</p>
+              </div>
+              <div className="col-auto">
+                <div className="form-group text-end">
+                  <label htmlFor="limitSelect" className="form-label">
+                    Limit Rows:
+                  </label>
+                  <select
+                    className="form-select"
+                    id="limitSelect"
+                    value={limit}
+                    onChange={(e) => setLimit(parseInt(e.target.value))}
+                  >
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
+              </div>
             </div>
-          </pre>
+          </div>
+          <div className="container">
+            <h2 className="my-2">Course Details</h2>
+            <div className="row">
+              <div className="col">
+                <table className="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Course</th>
+                      <th>Final Score</th>
+                      <th>Search Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {response.slice(0, limit).map((course, index) => (
+                      <tr key={index}>
+                        <td>{course.course}</td>
+                        <td>{course.final_score}</td>
+                        <td>{course.search_score}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
