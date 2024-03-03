@@ -244,13 +244,12 @@ const SliderComponent = () => {
           <div className="container">
             <h2 className="my-2">Course Details</h2>
             <div className="row">
-              <div className="col">
+              <div className="col table-responsive">
                 <table className="table table-striped">
                   <thead>
                     <tr>
                       <th>Course</th>
-                      <th>Final Score</th>
-                      <th>Search Score</th>
+
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -258,8 +257,7 @@ const SliderComponent = () => {
                     {response.slice(0, limit).map((course, index) => (
                       <tr key={index}>
                         <td>{course.course}</td>
-                        <td>{course.final_score}</td>
-                        <td>{course.search_score}</td>
+
                         <td>
                           <button
                             className="details-btn"

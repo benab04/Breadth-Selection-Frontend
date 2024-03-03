@@ -82,7 +82,9 @@
     z-index: 999;
   }
 
-
+.buffer-div{
+  width:10%;
+}
 
   
 
@@ -102,8 +104,8 @@
   }
   @media  screen and (max-width:723px) {
     .welcome{
-        font-size: 3.3rem;
-        margin:10px 4px;
+        font-size: 2.4rem;
+        margin:10px 6px;
     }
     .tagline{
         font-size: 14px;
@@ -114,5 +116,8 @@
         font-size: 20px;
         margin:10px 3px;
 
+    }
+    .buffer-div{
+      width:0;
     }
   }

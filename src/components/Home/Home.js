@@ -35,7 +35,7 @@ function Home() {
         <div className="hero">
           <h1 className="welcome">Choose your ideal breadth course for this semester</h1>
           <div className="overlay"></div> {/* Overlay layer */}
-          <div className="my-3" style={{width:"10%"}}></div>
+          <div className="my-3 buffer-div" ></div>
         </div>
       )}
     </section>
