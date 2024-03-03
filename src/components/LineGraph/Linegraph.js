@@ -141,18 +141,25 @@ function LineGraph({ showModal, data, onClose, course }) {
       <Modal.Header closeButton>
         <Modal.Title>{course.course}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <svg ref={svgRef}></svg>
-        <div ref={legendRef} className="legend"></div>
-        <div className="table-responsive">
-          {" "}
-          {/* Center the table */}
-          <table
-            ref={tableRef}
-            className="my-3 table table-bordered table-responsive"
-          ></table>
-        </div>
-      </Modal.Body>
+      {data.length != 0 && (
+        <Modal.Body>
+          <svg ref={svgRef}></svg>
+          <div ref={legendRef} className="legend"></div>
+          <div className="table-responsive">
+            {" "}
+            {/* Center the table */}
+            <table
+              ref={tableRef}
+              className="my-3 table table-bordered table-responsive"
+            ></table>
+          </div>
+        </Modal.Body>
+      )}
+      {data.length == 0 && (
+        <Modal.Body>
+          <h4>No matching records found</h4>
+        </Modal.Body>
+      )}
     </Modal>
   );
 }
