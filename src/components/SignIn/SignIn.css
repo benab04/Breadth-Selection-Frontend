@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    /* background: url('../../assets/images/bg.svg') center/cover no-repeat; */
+    background: url('../../assets/images/bg.svg') center/cover no-repeat;
   }
   
   .glassy-container {
