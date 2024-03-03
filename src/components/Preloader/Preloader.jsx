@@ -1,6 +1,6 @@
 import React from "react";
 import "./Preloader.css";
-function Preloader({ isFull }) {
+function Preloader({ isFull, color }) {
   return (
     <div className={isFull ? "preloader" : "loader"}>
       <div className="center">

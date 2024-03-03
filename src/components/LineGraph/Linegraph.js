@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
 import * as d3 from "d3";
 
-function LineGraph({ showModal, data, onClose }) {
+function LineGraph({ showModal, data, onClose, course }) {
   const svgRef = useRef(null);
   const legendRef = useRef(null);
   const tableRef = useRef(null); // Define table reference
@@ -139,7 +139,7 @@ function LineGraph({ showModal, data, onClose }) {
       {" "}
       {/* Set the modal size to large */}
       <Modal.Header closeButton>
-        <Modal.Title>Graph</Modal.Title>
+        <Modal.Title>{course.course}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <svg ref={svgRef}></svg>
@@ -149,9 +149,8 @@ function LineGraph({ showModal, data, onClose }) {
           {/* Center the table */}
           <table
             ref={tableRef}
-            className="my-3 table table-bordered"
-          ></table>{" "}
-          {/* Add table for data */}
+            className="my-3 table table-bordered table-responsive"
+          ></table>
         </div>
       </Modal.Body>
     </Modal>

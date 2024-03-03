@@ -3,6 +3,7 @@ import "./Slider.css";
 import { options } from "../../assets/data/dropdown";
 import LineGraphModal from "../LineGraph/Linegraph";
 import { Button } from "react-bootstrap";
+import Preloader from "../Preloader/Preloader";
 
 const SliderComponent = () => {
   const base_url = process.env.REACT_APP_BASE_URL;
@@ -14,6 +15,8 @@ const SliderComponent = () => {
   const [typedPreference, setTypedPreference] = useState("");
   const [limit, setLimit] = useState(10);
   const [showModal, setShowModal] = useState(false);
+  const [course, setCourse] = useState(null);
+  const [received, setReceived] = useState(true);
 
   const handlePreferenceChange = (e) => {
     const selectedPref = e.target.value;
@@ -38,6 +41,7 @@ const SliderComponent = () => {
   };
 
   const handleSubmit = () => {
+    setReceived(false);
     const formData = new FormData();
     selectedPreferences.forEach((pref) => {
       formData.append(
@@ -54,6 +58,7 @@ const SliderComponent = () => {
       .then((responseData) => {
         console.log(responseData);
         setResponse(responseData);
+        setReceived(true);
       })
       .catch((error) => {
         console.error("Error submitting data:", error);
@@ -75,9 +80,10 @@ const SliderComponent = () => {
     e.preventDefault();
     addPreference(typedPreference);
   };
-  function handleDetails(e) {
+  function handleDetails(e, f) {
     const formData = new FormData();
     formData.append("Course", e);
+    setCourse(f);
     fetch(base_url + "analytics/", {
       method: "POST",
       body: formData,
@@ -183,7 +189,7 @@ const SliderComponent = () => {
               </div>
             ))}
           </div>
-          <div className="form-check">
+          <div className="form-check my-2">
             <input
               className="form-check-input"
               type="checkbox"
@@ -202,7 +208,7 @@ const SliderComponent = () => {
       )}
       {usePreferences && (
         <div className="mb-3">
-          <p>Selected Preferences:</p>
+          {/* <p>Selected Preferences:</p> */}
           {renderSliders()}
         </div>
       )}
@@ -213,8 +219,12 @@ const SliderComponent = () => {
       >
         Submit
       </button>
-
-      {response && (
+      {!received && (
+        <div>
+          <Preloader isFull={false} color={"gray"} />
+        </div>
+      )}
+      {response && received && (
         <div className="mt-3">
           <div className="container">
             <div className="row">
@@ -249,7 +259,7 @@ const SliderComponent = () => {
                   <thead>
                     <tr>
                       <th>Course</th>
-
+                      <th>Final Score</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -257,12 +267,12 @@ const SliderComponent = () => {
                     {response.slice(0, limit).map((course, index) => (
                       <tr key={index}>
                         <td>{course.course}</td>
-
+                        <td>{course.final_score}</td>
                         <td>
                           <button
                             className="details-btn"
                             onClick={() => {
-                              handleDetails(course.course);
+                              handleDetails(course.course, course);
                             }}
                           >
                             Details
@@ -281,6 +291,7 @@ const SliderComponent = () => {
         <LineGraphModal
           showModal={showModal}
           data={details_response}
+          course={course}
           onClose={handleCloseModal}
         />
       )}
