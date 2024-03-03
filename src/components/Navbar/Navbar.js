@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-// import logo_img from "../../assets/images/Marico_Logo.svg.png";
 import { UserAuth } from "../../context/AuthContext";
+
 function Navbar() {
   const { logOut, user } = UserAuth();
   const [URL, setURL] = useState("");
   const [userName, setUserName] = useState("");
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   const handleSignOut = async () => {
     try {
@@ -14,6 +16,7 @@ function Navbar() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     if (user?.displayName != null) {
       setUserName(user.displayName);
@@ -21,14 +24,33 @@ function Navbar() {
     if (user?.photoURL != null) {
       setURL(user.photoURL);
     }
-  }, [user]);
+
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos, user]);
+
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <nav
+        className={`navbar navbar-expand-lg bg-body-tertiary fixed-top ${
+          visible ? "nav-visible" : "nav-hidden"
+        }`}
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             {/* <img className="logo-img" src="#" alt="marico-logo" /> */}
-            <h3>SELECT</h3>
+            <h3 className="nav-title">
+              <span style={{ color: "#4361ee" }}>Hack</span>athon
+            </h3>
           </a>
           <button
             className="navbar-toggler"
@@ -48,7 +70,7 @@ function Navbar() {
           >
             <div className="offcanvas-header">
               <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-                Offcanvas
+                <span style={{ color: "#4361ee" }}>Hack</span>athon
               </h5>
               <button
                 type="button"
