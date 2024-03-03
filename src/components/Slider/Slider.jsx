@@ -298,5 +298,4 @@ const SliderComponent = () => {
     </div>
   );
 };
-
 export default SliderComponent;
