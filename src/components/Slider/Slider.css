@@ -3,24 +3,37 @@
     justify-content: center;
     align-items: center;
     padding-left: 10px;
+    vertical-align: middle;
     padding-right: 10px;
-    margin:10px 5px;
+    margin:7px 5px;
     height:30px;
     width:fit-content;
     background-color: #E3E3E3;
     border-radius: 30px;
 }
-.close-btn{
+.btn-close{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: transparent;
     height:20px;
+    font-size: 0.65rem;
     width:20px;
-    border:none
 }
 
 .details-btn{
     padding:3px 10px;
     border-radius: 20px;
 }
+
+.shadow-effect {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Example shadow effect */
+    transition: box-shadow 0.3s ease; /* Optional: Smooth transition effect */
+    max-width:1000px;
+    padding:20px;
+    border-radius: 10px;
+  }
+  
+  .shadow-effect:hover {
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Example shadow effect on hover */
+  }
+  

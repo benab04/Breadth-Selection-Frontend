@@ -129,9 +129,9 @@ const SliderComponent = () => {
   };
 
   return (
-    <div className="container my-5 ">
+    <div className="container my-5 shadow-effect">
       <div className="row mb-3">
-        <div className="col">
+        <div className="col-md-6">
           <label htmlFor="preferenceSelect" className="form-label">
             Select Preferences:
           </label>
@@ -148,7 +148,7 @@ const SliderComponent = () => {
             ))}
           </select>
         </div>
-        <div className="col">
+        <div className="col-md-6">
           <form onSubmit={handleTypedPreferenceSubmit}>
             <label htmlFor="typedPreferenceInput" className="form-label">
               Additional Preferences:
@@ -172,16 +172,14 @@ const SliderComponent = () => {
       {selectedPreferences.length > 0 && (
         <div className="mb-3">
           <p>Selected Subject Preferences:</p>
-          <div className="d-flex ">
+          <div className="d-flex flex-wrap">
             {selectedPreferences.map((pref) => (
               <div className="preference-box" key={pref}>
                 {pref}
                 <button
-                  className="close-btn"
+                  className="btn-close "
                   onClick={() => handleRemovePreference(pref)}
-                >
-                  x
-                </button>
+                ></button>
               </div>
             ))}
           </div>
