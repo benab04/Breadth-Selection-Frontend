@@ -1,43 +1,81 @@
-.preference-box{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 10px;
-    vertical-align: middle;
-    padding-right: 10px;
-    margin:7px 5px;
-    height:30px;
-    width:fit-content;
-    background-color: #E3E3E3;
-    border-radius: 30px;
+.preference-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  vertical-align: middle;
+  padding-right: 10px;
+  margin: 7px 5px;
+  height: 30px;
+  width: fit-content;
+  background-color: #d7d7d7 !important;
+  border-radius: 30px;
 }
-.btn-close{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:20px;
-    font-size: 0.65rem;
-    width:20px;
+.btn-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  font-size: 0.65rem;
+  width: 20px;
 }
 
-.details-btn{
-    padding:3px 10px;
-    border-radius: 20px;
+.details-btn {
+  padding: 3px 10px;
+  border-radius: 20px;
 }
 
 .shadow-effect {
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Example shadow effect */
-    transition: box-shadow 0.3s ease; /* Optional: Smooth transition effect */
-    max-width:1000px;
-    padding:20px;
-    border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Example shadow effect */
+  transition: box-shadow 0.3s ease; /* Optional: Smooth transition effect */
+  max-width: 1000px;
+  padding: 20px;
+  border-radius: 10px;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.23);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.9px);
+  -webkit-backdrop-filter: blur(7.9px);
+  border: 1px solid rgba(255, 255, 255, 0.33);
+}
+
+.shadow-effect:hover {
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Example shadow effect on hover */
+}
+
+.data-section {
+  background: linear-gradient(to bottom,#f4f4f6,#e6e6e9,#778ef235) !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+
+.red-slider::-webkit-slider-thumb {
+    background: #4361ee; /* Change slider thumb color to red */
+  }
+  .red-slider::-webkit-slider-runnable-track{
+    background: #ddd; /* Change slider thumb color to red */
+
   }
   
-  .shadow-effect:hover {
-    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Example shadow effect on hover */
+  .red-slider::-moz-range-thumb {
+    background: #4361ee; /* Change slider thumb color to red */
+  }
+  
+  .btn.btn-danger {
+    background-color: #4361ee; /* Change button background color to red */
+    border-color: #4361ee; /* Change button border color to red */
+  }
+  
+  .btn.btn-danger:hover {
+    background-color: #4361ee; /* Change button background color to dark red on hover */
+    border-color: #4361ee; /* Change button border color to dark red on hover */
   }
   
 
-
-
+  .form-select,.form-control {
+    background-color: #fcfcfc !important; /* Set background color of selection boxes to grey */
+  }
   
