@@ -95,7 +95,8 @@ const SliderComponent = () => {
         setShowModal(true); // Open modal after details_response has been updated
       })
       .catch((error) => {
-        console.error("Error submitting data:", error);
+        console.error("Error getting response:", error);
+        alert("Error getting response:", error);
       });
   }
 
