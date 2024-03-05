@@ -24,7 +24,7 @@
   position: relative;
   top:0;
   display: flex;
-  margin-top:-200px;
+  /* margin-top:-200px; */
   align-items:flex-start;
   justify-content:center;
 }
