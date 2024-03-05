@@ -61,7 +61,7 @@ function Register() {
         setError("User is already registered");
         setTimeout(() => {
           navigate("/signin");
-        }, 2000);
+        }, 1500);
       } else if (response.status == 401) {
         console.log(Object.values(responseText));
       }
