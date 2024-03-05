@@ -42,7 +42,6 @@ function SignIn({ userdb, updateuserdb }) {
         method: "POST",
         body: formData,
       });
-      console.log(formData.get("username"));
       const responseText = await response.json();
       if (response.status == 200) {
         console.log(Object.values(responseText));

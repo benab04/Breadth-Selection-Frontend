@@ -41,7 +41,6 @@ function App() {
         const bytes = CryptoJS.AES.decrypt(encryptedUser, ENCRYPTION_KEY);
         const decryptedUser = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
         setuserdb(decryptedUser);
-        console.log(decryptedUser);
       } catch (error) {
         console.error("Error parsing user data:", error);
       }
@@ -50,7 +49,6 @@ function App() {
 
   useEffect(() => {
     if (userdb) {
-      console.log(userdb);
       const encryptedUser = CryptoJS.AES.encrypt(
         JSON.stringify(userdb),
         ENCRYPTION_KEY
