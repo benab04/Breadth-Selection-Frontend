@@ -131,7 +131,9 @@ function Register() {
               setconfirmpass(e.target.value);
             }}
           />
-          <p style={{ color: "red" }}>{error ? error : null}</p>
+          <p style={{ color: "red", fontWeight: "500" }}>
+            {error ? error : null}
+          </p>
           <button type="submit" class="btn btn-primary sign-in-button my-2">
             Register
           </button>

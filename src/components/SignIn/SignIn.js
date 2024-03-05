@@ -6,6 +6,8 @@ import "./SignIn.css";
 function SignIn({ userdb, updateuserdb }) {
   const loader = document.getElementById("loader");
   const base_url = process.env.REACT_APP_BASE_URL;
+  const [error, setError] = useState("");
+
   if (loader != null) {
     loader.style.display = "none";
   }
@@ -59,8 +61,10 @@ function SignIn({ userdb, updateuserdb }) {
         navigate("/");
       } else if (response.status == 400) {
         console.log(Object.values(responseText));
+        setError(Object.values(responseText));
       } else if (response.status == 401) {
         console.log(Object.values(responseText));
+        setError(Object.values(responseText));
       }
     } catch (error) {
       console.error("Error submitting form:", error.message);
@@ -93,7 +97,11 @@ function SignIn({ userdb, updateuserdb }) {
             placeholder="Password"
             name="password"
             required
+            onChange={() => setError("")}
           />
+          <p style={{ color: "red", fontWeight: "500" }}>
+            {error ? error : null}
+          </p>
           <button type="submit" class="btn btn-primary sign-in-button my-2">
             Sign In
           </button>
