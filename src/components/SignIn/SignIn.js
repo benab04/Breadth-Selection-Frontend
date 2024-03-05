@@ -65,7 +65,6 @@ function SignIn({ userdb, updateuserdb }) {
     } catch (error) {
       console.error("Error submitting form:", error.message);
     }
-    console.log(e);
   };
   return (
     <div className="sign-in">
