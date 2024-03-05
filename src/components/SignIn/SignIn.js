@@ -55,7 +55,7 @@ function SignIn({ userdb, updateuserdb }) {
           ]);
         };
         handleupdateuserdb();
-        window.close();
+        // window.close();
         navigate("/");
       } else if (response.status == 400) {
         console.log(Object.values(responseText));
