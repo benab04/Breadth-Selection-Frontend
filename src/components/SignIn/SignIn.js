@@ -27,7 +27,7 @@ function SignIn({ userdb, updateuserdb }) {
       loader.style.display = "none";
 
       // console.log(user);
-      window.close();
+      // window.close();
       navigate("/");
     }
   }, [user]);
