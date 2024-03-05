@@ -2,18 +2,39 @@ import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { UserAuth } from "../../context/AuthContext";
 
-function Navbar() {
+function Navbar({ userdb, updateuserdb }) {
   const { logOut, user } = UserAuth();
   const [URL, setURL] = useState("");
   const [userName, setUserName] = useState("");
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  console.log(userdb);
+  const base_url = process.env.REACT_APP_BASE_URL;
 
   const handleSignOut = async () => {
-    try {
-      await logOut();
-    } catch (error) {
-      console.log(error);
+    if (userdb == null) {
+      try {
+        await logOut();
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const response = await fetch(base_url + "logout/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Add any additional headers if needed
+          },
+          // You can pass any data if required, but typically logout requests don't need any data in the body
+          body: JSON.stringify(userdb),
+        });
+        if (response.status == 200) {
+          updateuserdb(null);
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -86,12 +107,13 @@ function Navbar() {
                     Home
                   </a>
                 </li>
-                {user?.displayName ? (
+                {user?.displayName || userdb != null ? (
                   <li className="nav-item">
                     <a
                       className="nav-link active"
                       aria-current="page"
                       href="/account"
+                      onClick={() => updateuserdb(userdb)}
                     >
                       Account
                     </a>
@@ -130,7 +152,7 @@ function Navbar() {
                   </ul>
                 </li> */}
               </ul>
-              {user?.displayName ? (
+              {user?.displayName || userdb != null ? (
                 <a
                   className="btn btn-outline-success"
                   role="button"
@@ -148,7 +170,7 @@ function Navbar() {
                   className="btn btn-outline-success"
                   href="/signin"
                   role="button"
-                  target="_blank"
+                  // target="_blank"
                   rel="nonreferrer"
                 >
                   Login
