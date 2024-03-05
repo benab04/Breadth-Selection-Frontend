@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 const Protected = ({ children, userdb, updateuserdb }) => {
   useEffect(() => {
     // Load user from cookie when component mounts
-    const userCookie = Cookies.get("userdb");
+    const userCookie = Cookies.get("username");
     if (userCookie) {
       try {
         const decryptedUser = JSON.parse(userCookie);

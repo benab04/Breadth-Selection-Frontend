@@ -47,14 +47,7 @@ function SignIn({ userdb, updateuserdb }) {
       if (response.status == 200) {
         console.log(Object.values(responseText));
         const handleupdateuserdb = () => {
-          updateuserdb([
-            {
-              username: formData.get("username"),
-            },
-            {
-              password: formData.get("password"),
-            },
-          ]);
+          updateuserdb(formData.get("username"));
         };
         handleupdateuserdb();
         // window.close();

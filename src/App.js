@@ -18,6 +18,21 @@ function App() {
     setuserdb(e);
   }
 
+  // useEffect(() => {
+  //   // Load and decrypt user from cookie when component mounts
+  //   const encryptedUser = Cookies.get("userdb");
+  //   if (encryptedUser) {
+  //     try {
+  //       const bytes = CryptoJS.AES.decrypt(encryptedUser, ENCRYPTION_KEY);
+  //       const decryptedUser = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+  //       console.log(decryptedUser);
+  //       console.log(Object.values(decryptedUser));
+  //     } catch (error) {
+  //       console.error("Error parsing user data:", error);
+  //     }
+  //   }
+  // }, []);
+
   useEffect(() => {
     // Load and decrypt user from cookie when component mounts
     const encryptedUser = Cookies.get("userdb");
@@ -26,6 +41,7 @@ function App() {
         const bytes = CryptoJS.AES.decrypt(encryptedUser, ENCRYPTION_KEY);
         const decryptedUser = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
         setuserdb(decryptedUser);
+        console.log(decryptedUser);
       } catch (error) {
         console.error("Error parsing user data:", error);
       }
@@ -34,25 +50,18 @@ function App() {
 
   useEffect(() => {
     if (userdb) {
+      console.log(userdb);
       const encryptedUser = CryptoJS.AES.encrypt(
         JSON.stringify(userdb),
         ENCRYPTION_KEY
       ).toString();
-      Cookies.set("userdb", encryptedUser, { expires: 7 }); // Cookie will expire in 7 days
+      Cookies.set("userdb", encryptedUser, { expires: 7 });
+      // Cookie will expire in 7 days
     } else {
       Cookies.remove("userdb"); // Remove the user cookie if user is null
     }
   }, [userdb]);
 
-  // function updateuserdb(e) {
-  //   setuserdb(e);
-  // }
-  // // Function to update user
-  // const updateUser = (newUser) => {
-  //   setuserdb(newUser);
-  // };
-
-  console.log(userdb);
   return (
     <div>
       <AuthContextProvider userdb={userdb}>

@@ -46,13 +46,6 @@ function Register() {
         body: formData,
       });
       const responseText = await response.json();
-      // if (response.ok) {
-      //   // If the response is successful (status code 200-299), handle it here
-      // } else {
-      //   // If the response is not successful, throw an error or handle it as needed
-      //   console.log(responseText);
-      //   throw new Error("Form submission failed");
-      // }
       if (response.status == 200) {
         console.log(Object.values(responseText));
         navigate("/");
@@ -68,7 +61,6 @@ function Register() {
     } catch (error) {
       console.error("Error submitting form:", error.message);
     }
-    console.log(e);
   };
   return (
     <div className="sign-in register-page">

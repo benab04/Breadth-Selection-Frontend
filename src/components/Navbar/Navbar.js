@@ -8,7 +8,6 @@ function Navbar({ userdb, updateuserdb }) {
   const [userName, setUserName] = useState("");
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  console.log(userdb);
   const base_url = process.env.REACT_APP_BASE_URL;
 
   const handleSignOut = async () => {
