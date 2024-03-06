@@ -21,3 +21,22 @@
   transform: translateY(-100%);
   transition: transform 0.5s;
 }
+.offcanvas{
+  z-index: 99999;
+}
+
+@media screen  and (max-width:991px){
+  .offcanvas-body{
+    z-index: 9999;
+    overflow-y: unset;
+    background-color: unset;
+    flex-grow: unset;
+  }
+  
+  
+  .offcanvas-body {
+    width: 100%; /* Make the offcanvas body cover the whole page width */
+    background-color: #fff; /* Set a background color for the offcanvas body */
+  }
+}
+
